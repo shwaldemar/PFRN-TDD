@@ -12,7 +12,7 @@ containers:
         container: /code/node_modules
     working_directory: /code
 
-  # postgre sql container
+  # postgres sql container
   db:
     image: postgres:alpine
     environment:

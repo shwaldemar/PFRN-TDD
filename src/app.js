@@ -1,10 +1,10 @@
 const fastify = require('fastify');
-const db = require('../plugin/database');
+const db = require('./plugin/database');
 
 function build(opts = {}) {
   const app = fastify(opts);
 
-  // register plugins on application
+  // register plugins
   app.register(db);
 
   app.get('/', async (request, reply) => {
