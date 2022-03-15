@@ -1,5 +1,5 @@
 {
   "driver": "pg",
   "dev": { "ENV": "POSTGRES_URI" },
-  "sql_file": true
+  "sql-file": true
 }
