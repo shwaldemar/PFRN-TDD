@@ -12,8 +12,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
     "fastify": "^3.27.4",
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "pg-promise": "^10.11.1"
   },
   "devDependencies": {
     "eslint": "^8.11.0",
