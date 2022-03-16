@@ -12,11 +12,11 @@ containers:
         container: /code/node_modules
     working_directory: /code
 
-  # postgres sql container
+  # postgres sql database container
   db:
     image: postgres:alpine
     ports:
-      - 5432:5432
+      - 5001:5001
     volumes:
       - local: ./postgres-data
         container: /var/lib/postgresql/data
@@ -24,6 +24,16 @@ containers:
       POSTGRES_PASSWORD: password
       POSTGRES_USER: app
       POSTGRES_DB: db
+
+  # postgres sql test database container
+  db-test:
+    image: postgres:alpine
+    ports:
+      - 5001:5432
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: app
+      POSTGRES_DB: db-test
 
 tasks:
   say-hello:
@@ -50,3 +60,15 @@ tasks:
         - 5000:8080
     dependencies:
       - db
+
+  # task for running tests
+  test-watch:
+    description: tests running in watch mode
+    run:
+      container: build-fastify-env
+      environment:
+        PORT: 8080
+        POSTGRES_URI: postgres://app:password@db-test/db-test
+      command: npm run test:watch
+    dependencies:
+      - db-test

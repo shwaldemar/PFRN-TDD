@@ -4,7 +4,7 @@ const route = async (fastify) => {
     const allTest = await fastify.db.query(`SELECT * FROM test`);
     reply.code(200).send(allTest);
   });
-  // get route api/v1/test/
+  // post route api/v1/test/
   fastify.post('/', async (request, reply) => {
     fastify.log.info(`request with body ${request}`);
     const { title } = request.body;
